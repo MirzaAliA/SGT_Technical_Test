@@ -8,9 +8,9 @@ The website isa-charity.webflow.io belongs to the charity organization ISA (Inno
 
 ## 🧠 Technologies Used
 
-- Node.js
+- Node.js v20.10.0
 - Vue.js 3
-- GSAP
+- GSAP v3.13.0
 - ScrollTrigger
 - Vite 
 - Sass
