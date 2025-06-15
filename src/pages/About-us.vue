@@ -10,11 +10,6 @@ import Section6 from '../components/section-6.vue';
 import FloatingButton from '../components/floating-button.vue';
 
 export default {
-    // data() {
-    //     return {
-    //         name: 'Mirza Ali'
-    //     }
-    // },
     components: {
         Header,
         Section1,
@@ -39,23 +34,4 @@ export default {
     <Section5 />
     <Section6 />
     <Footer />
-    
-    
 </template>
-
-<style scoped>
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>

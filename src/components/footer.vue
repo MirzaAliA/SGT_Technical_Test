@@ -1,10 +1,13 @@
 <script>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap'; // Import library GSAP utama untuk animasi
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import plugin ScrollTrigger untuk animasi saat elemen masuk viewport
 
+// Registrasi plugin ScrollTrigger ke dalam GSAP
 gsap.registerPlugin(ScrollTrigger);
+
 export default {
     name: 'Footer',
+    // Animasi gambar footer: muncul dari kiri dengan fade in
     mounted() {
         this.$nextTick(() => {
             gsap.fromTo(this.$refs.footerimage,
