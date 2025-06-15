@@ -1,0 +1,13 @@
+* {
+    font-family: 'Helvetica', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primaryAccsent: #fcf944;
+    --secondaryColor: #3e88ff;
+    --tertiaryColor: #ff97d0;
+    --quaternaryColor: #31be32;
+}
