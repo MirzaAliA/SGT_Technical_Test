@@ -1,16 +1,51 @@
     <script>
-    import { PhArrowRight } from '@phosphor-icons/vue';
     import { cardsSection3 } from './fetchAPIData'
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+    gsap.registerPlugin(ScrollTrigger);
+
     export default {
         name: 'Section-3',
-        components: {
-            PhArrowRight,
-        },
         data() {
             return {
                 cardsSection3: cardsSection3
             };
-        }
+        },
+        mounted() {
+            this.$nextTick(() => {
+                this.$refs.cards.forEach((cardEl) => {
+                    gsap.from(cardEl, {
+                        opacity: 0,
+                        y: 100,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: cardEl,
+                            start: 'top 95%',
+                            toggleActions: 'play reverse play reverse',
+                        },
+                    });
+                });
+            });
+
+            this.$nextTick(() => {
+                gsap.fromTo(this.$refs.help,
+                    { opacity: 0, x: -100 },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: this.$refs.help,
+                            start: 'top 95%',
+                            toggleActions: 'play reverse play reverse',
+                        }
+                    }
+                );
+            });
+        },
     }
 
 </script>
@@ -25,14 +60,15 @@
                 <h3>homeless packs, volunteers, guardians, overstayers, shelters and other organisations</h3>
             </div>
             <div class="section3-bottom">
-                <div class="card-wrapper-section3 card-wrapper-outer" v-for="item in cardsSection3" :key="item.id">
+                <div class="card-wrapper-section3 card-wrapper-outer" v-for="item in cardsSection3" :key="item.id"
+                    ref="cards">
                     <div class="card-wrapper-inner-section3">
                         <h1>{{ item.title }}</h1>
                     </div>
                 </div>
 
             </div>
-            <div class="button-help-wrapper">
+            <div class="button-help-wrapper" ref="help">
                 <div class="button-help">
                     <h1>apply for help</h1>
                     <img class="arrow-image" src="../assets/images/arrow.png" alt="">
@@ -182,8 +218,8 @@
     }
 
     .button-help:hover .arrow-image {
-    transform: translateX(-1vw);
-}
+        transform: translateX(-1vw);
+    }
 
 }
 
@@ -242,8 +278,8 @@
     }
 
     .button-help:hover .arrow-image {
-    transform: translateX(-1.5vw);
-}
+        transform: translateX(-1.5vw);
+    }
 
 }
 </style>

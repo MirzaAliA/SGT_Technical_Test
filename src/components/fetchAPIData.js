@@ -311,3 +311,21 @@ export const cardsSection6 = [
         image: new URL('../assets/images/KICKBITE.jpeg', import.meta.url).href
     }
 ];
+
+export const cardsSection2 = [
+    {
+        id: 1,
+        title: 'Emergency Aid. WAR 2022.',
+        description: 'providing food and medicine to the shelters and animals which lost their homes and families due to the war',
+    },
+    {
+        id: 2,
+        title: 'Non-commercial feed line',
+        description: 'construction of industrial production base where food for shelters will be produced on a free basis',
+    },
+    {
+        id: 3,
+        title: 'Education and Control',
+        description: 'lectures on communication, organisation and coordination of processes, control over the use of aid',
+    },
+]

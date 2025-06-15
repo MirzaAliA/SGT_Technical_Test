@@ -1,4 +1,9 @@
 <script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 import { cardsSection4 } from './fetchAPIData';
 export default {
     name: 'Section-4',
@@ -6,7 +11,24 @@ export default {
         return {
             cardsSection4: cardsSection4
         };
-    }
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.$refs.cardteams.forEach((cardteam) => {
+                gsap.from(cardteam, {
+                    opacity: 0,
+                    y: 100,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: cardteam,
+                        start: 'top 95%',
+                        toggleActions: 'play reverse play reverse',
+                    },
+                });
+            });
+        });
+    },
 }
 
 </script>
@@ -19,7 +41,8 @@ export default {
                 <h3>consists of completely different people who are united by a common desire - to help</h3>
             </div>
             <div class="section4-bottom">
-                <div class="card-wrapper-section4 card-wrapper-outer" v-for="item in cardsSection4" :key="item.id">
+                <div ref="cardteams" class="card-wrapper-section4 card-wrapper-outer" v-for="item in cardsSection4"
+                    :key="item.id">
                     <div class="card-wrapper-inner-section4">
                         <img class="section4-card-image" :src="item.image" alt="">
                         <h3>{{ item.name }}</h3>
@@ -148,8 +171,8 @@ export default {
 @media only screen and (max-width: 480px) {
 
     .section4 {
-    gap: 8vw;
-}
+        gap: 8vw;
+    }
 
     .section4-top h1 {
         font-size: 8vw;

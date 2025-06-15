@@ -1,4 +1,8 @@
 <script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 import { cardsSection5 } from './fetchAPIData';
 
 export default {
@@ -7,7 +11,24 @@ export default {
         return {
             cardsSection5: cardsSection5
         }
-    }
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.$refs.cardcitizens.forEach((cardcitizen) => {
+                gsap.from(cardcitizen, {
+                    opacity: 0,
+                    y: 100,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: cardcitizen,
+                        start: 'top 95%',
+                        toggleActions: 'play reverse play reverse',
+                    },
+                });
+            });
+        });
+    },
 }
 
 </script>
@@ -20,7 +41,8 @@ export default {
                 <h3>support us</h3>
             </div>
             <div class="section5-bottom">
-                <div class="card-wrapper-section5 card-wrapper-outer" v-for="item in cardsSection5" :key="item.id">
+                <div ref="cardcitizens" class="card-wrapper-section5 card-wrapper-outer" v-for="item in cardsSection5"
+                    :key="item.id">
                     <div class="card-wrapper-inner-section5">
                         <img class="section5-card-image" :src="item.image" alt="">
                         <h3>{{ item.name }}</h3>
@@ -140,20 +162,20 @@ export default {
 @media only screen and (max-width: 480px) {
 
     .section5 {
-    gap: 8vw;
-}
+        gap: 8vw;
+    }
 
-.section5-top {
-    gap: 3vw;
-}
+    .section5-top {
+        gap: 3vw;
+    }
 
     .section5-top h1 {
-    font-size: 8vw;
-}
+        font-size: 8vw;
+    }
 
-.section5-top h3 {
-    font-size: 3.5vw;
-}
+    .section5-top h3 {
+        font-size: 3.5vw;
+    }
 
     .card-wrapper-section5 {
         width: 35vw;

@@ -1,8 +1,38 @@
 <script>
-export default {
-    name: 'Section2'
-}
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { cardsSection2 } from './fetchAPIData';
 
+gsap.registerPlugin(ScrollTrigger);
+
+export default {
+    name: 'Section2',
+    data() {
+        return {
+            cardsSection2: cardsSection2
+        }
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.$refs.projects.forEach((project) => {
+                gsap.fromTo(project,
+                    {opacity: 0, x: -100},
+                    {
+                        opacity: 1,
+                        x: 0,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: project,
+                            start: 'top 95%',
+                            toggleActions: 'play reverse play reverse',
+                        },
+                    });
+            
+            });
+        });
+    },
+}
 </script>
 
 
@@ -17,25 +47,10 @@ export default {
                 </h3>
             </div>
             <div class="section2-2">
-                <div class="card-wrapper-section2 card-wrapper-outer-1">
+                <div :class="`card-wrapper-section2 card-wrapper-outer-${index + 1}`" v-for="(item, index) in cardsSection2" :key="item.id" ref="projects">
                     <div class="card-wrapper-inner-section2">
-                        <h1>Emergency Aid. WAR 2022.</h1>
-                        <h3>providing food and medicine to the shelters and animals which lost their homes and
-                            families due to the war</h3>
-                    </div>
-                </div>
-                <div class="card-wrapper-section2 card-wrapper-outer-2">
-                    <div class="card-wrapper-inner-section2">
-                        <h1>Non-commercial feed line</h1>
-                        <h3>construction of industrial production base where food for shelters will be produced on a
-                            free basis</h3>
-                    </div>
-                </div>
-                <div class="card-wrapper-section2 card-wrapper-outer-3">
-                    <div class="card-wrapper-inner-section2">
-                        <h1>Education and Control</h1>
-                        <h3>lectures on communication, organisation and coordination of processes, control over the
-                            use of aid</h3>
+                        <h1>{{ item.title }}</h1>
+                        <h3>{{ item.description }}</h3>
                     </div>
                 </div>
             </div>

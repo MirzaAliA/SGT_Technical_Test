@@ -1,6 +1,28 @@
 <script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 export default {
     name: 'Footer',
+    mounted() {
+        this.$nextTick(() => {
+            gsap.fromTo(this.$refs.footerimage,
+                { opacity: 0, x: -100 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: this.$refs.footerimage,
+                        start: 'top 95%',
+                        toggleActions: 'play reverse play reverse',
+                    }
+                }
+            );
+        });
+    }
 }
 
 </script>
@@ -23,7 +45,7 @@ export default {
                     <img class="logo" src="../assets/images/telegram.svg" alt="telegram">
                 </div>
             </div>
-            <div class="footer-right">
+            <div ref="footerimage" class="footer-right">
                 <img src="../assets/images/footer-image.svg" alt="">
             </div>
         </div>

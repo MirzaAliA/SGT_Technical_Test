@@ -1,6 +1,69 @@
 <script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default {
     name: 'Header',
+    mounted() {
+        this.$nextTick(() => {
+            gsap.fromTo(this.$refs.logoheader,
+                { opacity: 0, y: -100 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.5,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: this.$refs.logoheader,
+                        start: 'top 95%',
+                        toggleActions: 'play reverse play reverse',
+                    }
+                }
+            );
+        });
+        this.$nextTick(() => {
+            gsap.fromTo(this.$refs.titleheader,
+                { opacity: 0, x: 100 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.5,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: this.$refs.titleheader,
+                        start: 'top 95%',
+                        toggleActions: 'play reverse play reverse',
+                    }
+                }
+            );
+        });
+        this.$nextTick(() => {
+            gsap.fromTo(this.$refs.headerbottom,
+                { opacity: 0, y: 100 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.5,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: this.$refs.headerbottom,
+                        start: 'top 95%',
+                        toggleActions: 'play reverse play reverse',
+                    }
+                }
+            );
+        });
+        gsap.to(this.$refs.arrowdown, {
+            scale: 0.5,
+            y: -60,
+            duration: 1,
+            ease: 'ease.out',
+            repeat: -1,
+            yoyo: true
+        });
+    }
 }
 
 </script>
@@ -9,11 +72,11 @@ export default {
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-top">
-                <img class="kucing-header kucing-header-1" src="../assets/images/kucing-header-1.svg" alt="">
-
-                <h1 class="header-title">Innovative Solutions for Animals</h1>
+                <img ref="logoheader" class="kucing-header kucing-header-1" src="../assets/images/kucing-header-1.svg"
+                    alt="">
+                <h1 ref="titleheader" class="header-title">Innovative Solutions for Animals</h1>
             </div>
-            <div class="header-bottom">
+            <div ref="headerbottom" class="header-bottom">
                 <h3 class="header-description">charity organization</h3>
                 <div class="header-logo">
                     <img class="logo" src="../assets/images/youtube.svg" alt="youtube">
@@ -24,8 +87,8 @@ export default {
                 </div>
             </div>
         </div>
-        <div class="arrow-down">
-            <img src="" alt="">
+        <div class="header-arrow-down">
+            <img ref="arrowdown" class="arrow-down" src="../assets/images/arrow.png" alt="">
         </div>
     </div>
 </template>
@@ -96,6 +159,13 @@ h3.header-description {
     transition: ease 0.3s;
 }
 
+.arrow-down {
+    rotate: 270deg;
+    position: absolute;
+    bottom: 2vw;
+    width: 2vw;
+}
+
 @media only screen and (max-width: 900px) {
 
     .header-wrapper {
@@ -131,6 +201,11 @@ h3.header-description {
         width: 4.5vw;
     }
 
+    .arrow-down {
+        bottom: 6vw;
+        width: 4vw;
+    }
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -161,6 +236,11 @@ h3.header-description {
 
     .header-logo img {
         width: 8vw;
+    }
+
+    .arrow-down {
+        bottom: 6vw;
+        width: 6vw;
     }
 
 }

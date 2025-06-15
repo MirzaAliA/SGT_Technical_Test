@@ -1,4 +1,8 @@
 <script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 import { cardsSection6 } from './fetchAPIData';
 
 export default {
@@ -7,7 +11,24 @@ export default {
         return {
             cardsSection6: cardsSection6
         }
-    }
+    },
+    mounted() {
+        this.$nextTick(() => {
+            this.$refs.cardpartners.forEach((cardpartner) => {
+                gsap.from(cardpartner, {
+                    opacity: 0,
+                    y: 100,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: cardpartner,
+                        start: 'top 95%',
+                        toggleActions: 'play reverse play reverse',
+                    },
+                });
+            });
+        });
+    },
 }
 
 </script>
@@ -20,7 +41,7 @@ export default {
                 <h3>are take care of our fund and help us with many questions</h3>
             </div>
             <div class="section6-bottom">
-                <div class="card-wrapper-section6 card-wrapper-outer" v-for="item in cardsSection6" :key="item.id">
+                <div ref="cardpartners" class="card-wrapper-section6 card-wrapper-outer" v-for="item in cardsSection6" :key="item.id">
                     <div class="card-wrapper-inner-section6">
                         <img class="section6-card-image" :src="item.image" alt="">
                     </div>

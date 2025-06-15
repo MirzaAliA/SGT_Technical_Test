@@ -1,6 +1,29 @@
 <script>
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default {
-    name: 'Section1'
+    name: 'Section1',
+    mounted() {
+        this.$nextTick(() => {
+            gsap.fromTo(this.$refs.youtube,
+                { opacity: 0, y: 100 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: this.$refs.youtube,
+                        start: 'top 95%',
+                        toggleActions: 'play reverse play reverse',
+                    }
+                }
+            );
+        });
+    }
 }
 
 </script>
@@ -37,7 +60,7 @@ export default {
                 <h3>Who else if not we should support our younger brothers, especially in difficult times? Let's be
                     friends!</h3>
             </div>
-            <div class="section1-3">
+            <div class="section1-3" ref="youtube">
                 <iframe class="section1-3-iframe-youtube" src="https://www.youtube.com/embed/5Wk1rp99B7o">
                 </iframe>
             </div>
@@ -118,30 +141,27 @@ export default {
 
 @media only screen and (max-width: 480px) {
 
-.section1-1 h1 {
-    font-size: 8vw;
+    .section1-1 h1 {
+        font-size: 8vw;
+    }
+
+    .section1-1 h3 {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+    .section1-2 h1 {
+        font-size: 8vw;
+    }
+
+    .section1-2 h3 {
+        font-size: 3.5vw;
+        line-height: 5.5vw;
+    }
+
+    .section1-2-vertical-line {
+        height: 30vw;
+    }
+
 }
-
-.section1-1 h3 {
-    font-size: 3.5vw;
-    line-height: 5.5vw;
-}
-
-.section1-2 h1 {
-    font-size: 8vw;
-}
-
-.section1-2 h3 {
-    font-size: 3.5vw;
-    line-height: 5.5vw;
-}
-
-.section1-2-vertical-line {
-    height: 30vw;
-}
-
-}
-
-
-
 </style>
