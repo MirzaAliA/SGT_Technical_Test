@@ -17,6 +17,7 @@ The website isa-charity.webflow.io belongs to the charity organization ISA (Inno
 - Node.js v20.10.0
 - Vue.js 3
 - GSAP v3.13.0
+- NPM 10.2.5
 - ScrollTrigger
 - Vite 
 - Sass
@@ -67,5 +68,9 @@ The website isa-charity.webflow.io belongs to the charity organization ISA (Inno
 ## 📦 Installation
 
 ```bash
+git clone https://github.com/MirzaAliA/SGT_Technical_Test.git
 npm install
+npm install gsap
 npm run dev
+```
+
