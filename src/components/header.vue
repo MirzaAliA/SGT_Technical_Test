@@ -1,12 +1,15 @@
 <script>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap'; // Import library GSAP utama untuk animasi
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import plugin ScrollTrigger untuk animasi saat elemen masuk viewport
 
+// Registrasi plugin ScrollTrigger ke dalam GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
     name: 'Header',
+
     mounted() {
+        // Animasi logo header: muncul dari atas dengan fade in
         this.$nextTick(() => {
             gsap.fromTo(this.$refs.logoheader,
                 { opacity: 0, y: -100 },
@@ -23,6 +26,8 @@ export default {
                 }
             );
         });
+
+        // Animasi judul header: muncul dari kanan dengan fade in
         this.$nextTick(() => {
             gsap.fromTo(this.$refs.titleheader,
                 { opacity: 0, x: 100 },
@@ -39,6 +44,8 @@ export default {
                 }
             );
         });
+
+        // Animasi deskripsi & logo media sosial: muncul dari bawah dengan fade in
         this.$nextTick(() => {
             gsap.fromTo(this.$refs.headerbottom,
                 { opacity: 0, y: 100 },
@@ -55,6 +62,8 @@ export default {
                 }
             );
         });
+
+        // Animasi panah: memantul terus menerus ke atas-bawah
         gsap.to(this.$refs.arrowdown, {
             scale: 0.5,
             y: -60,
@@ -63,9 +72,11 @@ export default {
             repeat: -1,
             yoyo: true
         });
+
+        // Gunakan ScrollTrigger untuk memastikan animasi hanya berjalan saat elemen masuk ke viewport
+        // 'start: top 95%' berarti animasi akan mulai saat bagian atas elemen menyentuh 95% dari tinggi layar
     }
 }
-
 </script>
 
 <template>

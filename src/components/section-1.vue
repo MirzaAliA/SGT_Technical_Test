@@ -1,12 +1,14 @@
 <script>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap'; // Import library GSAP utama untuk animasi
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import plugin ScrollTrigger untuk animasi saat elemen masuk viewport
 
+// Registrasi plugin ScrollTrigger ke dalam GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
     name: 'Section1',
     mounted() {
+        // Animasi iframe youtube: muncul dari bawah dengan fade in
         this.$nextTick(() => {
             gsap.fromTo(this.$refs.youtube,
                 { opacity: 0, y: 100 },

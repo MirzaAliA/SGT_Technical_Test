@@ -1,18 +1,22 @@
 <script>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap'; // Import library GSAP utama untuk animasi
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import plugin ScrollTrigger untuk animasi saat elemen masuk viewport
 
+// Registrasi plugin ScrollTrigger ke dalam GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 import { cardsSection4 } from './fetchAPIData';
 export default {
     name: 'Section-4',
+
+    // Mengambil data yang dibutuhkan untuk section 4
     data() {
         return {
             cardsSection4: cardsSection4
         };
     },
     mounted() {
+        // Animasi card: muncul dari bawah dengan fade in. Jika viewport dari bawah, maka akan fade in dari atas
         this.$nextTick(() => {
             this.$refs.cardteams.forEach((cardteam) => {
                 gsap.from(cardteam, {

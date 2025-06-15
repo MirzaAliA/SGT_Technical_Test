@@ -1,18 +1,22 @@
 <script>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from 'gsap'; // Import library GSAP utama untuk animasi
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import plugin ScrollTrigger untuk animasi saat elemen masuk viewport
 import { cardsSection6 } from './fetchAPIData';
+
+// Registrasi plugin ScrollTrigger ke dalam GSAP
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
     name: 'Section-6',
+
+    // Mengambil data yang dibutuhkan untuk section 6
     data() {
         return {
             cardsSection6: cardsSection6
         }
     },
     mounted() {
+        // Animasi logo: muncul dari bawah dengan fade in. Jika viewport dari bawah, maka akan fade in dari atas
         this.$nextTick(() => {
             this.$refs.cardpartners.forEach((cardpartner) => {
                 gsap.from(cardpartner, {
@@ -41,7 +45,8 @@ export default {
                 <h3>are take care of our fund and help us with many questions</h3>
             </div>
             <div class="section6-bottom">
-                <div ref="cardpartners" class="card-wrapper-section6 card-wrapper-outer" v-for="item in cardsSection6" :key="item.id">
+                <div ref="cardpartners" class="card-wrapper-section6 card-wrapper-outer" v-for="item in cardsSection6"
+                    :key="item.id">
                     <div class="card-wrapper-inner-section6">
                         <img class="section6-card-image" :src="item.image" alt="">
                     </div>

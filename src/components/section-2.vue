@@ -1,22 +1,26 @@
 <script>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cardsSection2 } from './fetchAPIData';
+import { gsap } from 'gsap'; // Import library GSAP utama untuk animasi
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // Import plugin ScrollTrigger untuk animasi saat elemen masuk viewport
 
+// Registrasi plugin ScrollTrigger ke dalam GSAP
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
     name: 'Section2',
+
+    // Mengambil data yang dibutuhkan untuk section 2
     data() {
         return {
             cardsSection2: cardsSection2
         }
     },
     mounted() {
+        // Animasi card: muncul dari kiri dengan fade in
         this.$nextTick(() => {
             this.$refs.projects.forEach((project) => {
                 gsap.fromTo(project,
-                    {opacity: 0, x: -100},
+                    { opacity: 0, x: -100 },
                     {
                         opacity: 1,
                         x: 0,
@@ -28,7 +32,6 @@ export default {
                             toggleActions: 'play reverse play reverse',
                         },
                     });
-            
             });
         });
     },
@@ -47,7 +50,8 @@ export default {
                 </h3>
             </div>
             <div class="section2-2">
-                <div :class="`card-wrapper-section2 card-wrapper-outer-${index + 1}`" v-for="(item, index) in cardsSection2" :key="item.id" ref="projects">
+                <div :class="`card-wrapper-section2 card-wrapper-outer-${index + 1}`"
+                    v-for="(item, index) in cardsSection2" :key="item.id" ref="projects">
                     <div class="card-wrapper-inner-section2">
                         <h1>{{ item.title }}</h1>
                         <h3>{{ item.description }}</h3>
