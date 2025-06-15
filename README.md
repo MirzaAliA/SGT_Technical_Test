@@ -57,7 +57,7 @@ The website isa-charity.webflow.io belongs to the charity organization ISA (Inno
 │   └── About-us.vue
 │
 ├── main.js
-
+```
 
 ## ⚙️ Notes
 
